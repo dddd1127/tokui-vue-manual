@@ -4,6 +4,24 @@
 
 ---
 
+## 与 TokUI 官方项目的关系
+
+本项目是对 [jboltai/tokui](https://github.com/jboltai/tokui) 开源框架的学习实现，参考其「极简方括号 DSL + 流式 UI」的核心思想，用于理解 TokUI 的解析、渲染、流式处理与事件机制。
+
+### 主要区别
+
+| 维度 | 本项目 | 官方 TokUI |
+|------|--------|-----------|
+| 定位 | 学习 / 最小实现 | 生产级框架 |
+| 组件数量 | 8 个（h1-h6、p、hr、img、card、row、col、btn） | 150+ 个 |
+| 框架适配 | 仅 Vue 3 手动实现 | React / Vue / Svelte / Web Component |
+| 后端 Builder | 无 | TokUIBuilder 链式 API |
+| 主题系统 | default / dark 两套固定主题 | CSS 变量 + HSB 色阶生成器 |
+| 安全校验 | 基础事件总线 | 危险属性过滤、变体白名单、资源防护 |
+| 测试覆盖 | 解析器 / 渲染器 / 流式组合式函数 | 37 个测试文件、1500+ 断言、E2E、覆盖率 |
+
+---
+
 ## 技术栈
 
 - **Vue 3** + `<script setup>` 单文件组件
