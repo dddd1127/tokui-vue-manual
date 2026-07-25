@@ -1,0 +1,324 @@
+/**
+ * TokUI Vue 手动实现 - 主题与组件样式
+ * 简化版：直接手写 CSS 变量，不做 HSB 色阶生成
+ */
+
+/* =====================
+   主题变量
+   ===================== */
+:root,
+[data-theme="default"] {
+  --tokui-primary: #1677ff;
+  --tokui-primary-hover: #4096ff;
+  --tokui-danger: #ff4d4f;
+  --tokui-success: #52c41a;
+  --tokui-warning: #faad14;
+
+  --tokui-bg: #ffffff;
+  --tokui-bg-secondary: #f5f5f5;
+  --tokui-text: #1f1f1f;
+  --tokui-text-secondary: #666666;
+  --tokui-text-muted: #888888;
+
+  --tokui-border: #d9d9d9;
+  --tokui-border-light: #eeeeee;
+  --tokui-radius-sm: 4px;
+  --tokui-radius: 8px;
+  --tokui-radius-lg: 12px;
+
+  --tokui-space-1: 4px;
+  --tokui-space-2: 8px;
+  --tokui-space-3: 12px;
+  --tokui-space-4: 16px;
+  --tokui-space-5: 24px;
+
+  --tokui-font-size-sm: 12px;
+  --tokui-font-size: 14px;
+  --tokui-font-size-lg: 16px;
+  --tokui-font-size-xl: 20px;
+  --tokui-font-size-2xl: 24px;
+  --tokui-font-size-3xl: 30px;
+}
+
+[data-theme="dark"] {
+  --tokui-bg: #141414;
+  --tokui-bg-secondary: #1f1f1f;
+  --tokui-text: #e0e0e0;
+  --tokui-text-secondary: #b0b0b0;
+  --tokui-text-muted: #888888;
+  --tokui-border: #434343;
+  --tokui-border-light: #303030;
+}
+
+/* =====================
+   容器与视图
+   ===================== */
+.tokui-view {
+  color: var(--tokui-text);
+  font-size: var(--tokui-font-size);
+  line-height: 1.5;
+}
+
+.tokui-stream {
+  margin-bottom: var(--tokui-space-4);
+}
+
+.my-slot {
+  /* 容器内容插槽，流式渲染用 */
+}
+
+/* =====================
+   基础组件
+   ===================== */
+.my-h1,
+.my-h2,
+.my-h3,
+.my-h4,
+.my-h5,
+.my-h6 {
+  font-weight: 600;
+  color: var(--tokui-text);
+  margin-bottom: var(--tokui-space-3);
+}
+
+.my-h1 { font-size: var(--tokui-font-size-3xl); }
+.my-h2 { font-size: var(--tokui-font-size-2xl); }
+.my-h3 { font-size: var(--tokui-font-size-xl); }
+.my-h4 { font-size: var(--tokui-font-size-lg); }
+.my-h5 { font-size: var(--tokui-font-size); font-weight: 600; }
+.my-h6 { font-size: var(--tokui-font-size-sm); font-weight: 600; text-transform: uppercase; }
+
+.my-p {
+  margin-bottom: var(--tokui-space-3);
+  color: var(--tokui-text);
+}
+
+.my-p--muted {
+  color: var(--tokui-text-muted);
+}
+
+.my-p--bold {
+  font-weight: 600;
+}
+
+.my-p--sm {
+  font-size: var(--tokui-font-size-sm);
+}
+
+.my-p--lg {
+  font-size: var(--tokui-font-size-lg);
+}
+
+.my-p--left { text-align: left; }
+.my-p--center { text-align: center; }
+.my-p--right { text-align: right; }
+
+hr.my-hr,
+.my-hr {
+  border: none;
+  border-top: 1px solid var(--tokui-border);
+  margin: var(--tokui-space-4) 0;
+}
+
+.my-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--tokui-radius-sm);
+  display: block;
+}
+
+.my-img--rounded {
+  border-radius: var(--tokui-radius-lg);
+}
+
+.my-img--bordered {
+  border: 1px solid var(--tokui-border);
+}
+
+/* =====================
+   布局组件
+   ===================== */
+.my-card {
+  background: var(--tokui-bg);
+  border: 1px solid var(--tokui-border);
+  border-radius: var(--tokui-radius);
+  padding: var(--tokui-space-4);
+  margin-bottom: var(--tokui-space-4);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.my-card__title {
+  font-size: var(--tokui-font-size-xl);
+  font-weight: 600;
+  margin-bottom: var(--tokui-space-3);
+  color: var(--tokui-text);
+}
+
+.my-card__body > *:last-child {
+  margin-bottom: 0;
+}
+
+.my-card--highlight {
+  border-color: var(--tokui-primary);
+  box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.1);
+}
+
+.my-card--flat {
+  box-shadow: none;
+}
+
+.my-card--bordered {
+  border-width: 2px;
+}
+
+.my-card--center {
+  text-align: center;
+}
+
+.my-card--right {
+  text-align: right;
+}
+
+.my-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--tokui-space-3);
+  margin-bottom: var(--tokui-space-3);
+}
+
+.my-col {
+  flex: 1;
+  min-width: 0;
+  padding: var(--tokui-space-3);
+  background: var(--tokui-bg-secondary);
+  border: 1px solid var(--tokui-border-light);
+  border-radius: var(--tokui-radius-sm);
+}
+
+/* =====================
+   表单组件
+   ===================== */
+.my-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tokui-space-1);
+  padding: 8px 16px;
+  font-size: var(--tokui-font-size);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--tokui-text);
+  background: var(--tokui-bg);
+  border: 1px solid var(--tokui-border);
+  border-radius: var(--tokui-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.my-btn:hover {
+  border-color: var(--tokui-primary);
+  color: var(--tokui-primary);
+}
+
+.my-btn--primary {
+  color: #ffffff;
+  background: var(--tokui-primary);
+  border-color: var(--tokui-primary);
+}
+
+.my-btn--primary:hover {
+  background: var(--tokui-primary-hover);
+  border-color: var(--tokui-primary-hover);
+}
+
+.my-btn--danger {
+  color: #ffffff;
+  background: var(--tokui-danger);
+  border-color: var(--tokui-danger);
+}
+
+.my-btn--success {
+  color: #ffffff;
+  background: var(--tokui-success);
+  border-color: var(--tokui-success);
+}
+
+.my-btn--warning {
+  color: #ffffff;
+  background: var(--tokui-warning);
+  border-color: var(--tokui-warning);
+}
+
+.my-btn--ghost {
+  background: transparent;
+  border-color: transparent;
+}
+
+.my-btn--sm {
+  padding: 4px 12px;
+  font-size: var(--tokui-font-size-sm);
+}
+
+.my-btn--lg {
+  padding: 10px 20px;
+  font-size: var(--tokui-font-size-lg);
+}
+
+.my-btn--block {
+  display: flex;
+  width: 100%;
+}
+
+.my-btn--pill {
+  border-radius: 9999px;
+}
+
+/* =====================
+   状态与降级
+   ===================== */
+.my-unknown {
+  padding: var(--tokui-space-3);
+  color: var(--tokui-danger);
+  background: rgba(255, 77, 79, 0.05);
+  border: 1px dashed var(--tokui-danger);
+  border-radius: var(--tokui-radius-sm);
+  margin-bottom: var(--tokui-space-3);
+}
+
+.my-error {
+  padding: var(--tokui-space-3);
+  color: #d46b08;
+  background: rgba(250, 173, 20, 0.05);
+  border: 1px dashed var(--tokui-warning);
+  border-radius: var(--tokui-radius-sm);
+  margin-bottom: var(--tokui-space-3);
+}
+
+.my-form {
+  margin-bottom: var(--tokui-space-4);
+}
+
+/* =====================
+   流式渲染动画
+   ===================== */
+
+@keyframes tokui-fade-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tokui-animate-in {
+  animation: tokui-fade-slide-in 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tokui-animate-in {
+    animation: none;
+  }
+}
