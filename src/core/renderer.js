@@ -29,7 +29,9 @@ class Renderer{
         }
 
         try{
-            return fn(node, rc)
+            const dom = fn(node, rc)
+            this._applyVariants(dom, node)
+            return dom
         } catch (err) {
             console.warn('Render error', node.type, err)
             return this._renderError(node, err)
@@ -97,10 +99,13 @@ class Renderer{
     }
     
     closeContainer(type){
-        const idx = this.slotStack.map(s => s.type).lastIndexOf(type)
-        if (idx !== -1) {
-            //把该容器及其内部所有嵌套容器一起出栈
-            this.slotStack.splice(idx)
+        // LIFO 出栈：从栈顶弹出，直到遇到匹配的容器类型
+        // 中间被弹出的容器是该类型的后代容器，一并关闭
+        while (this.slotStack.length > 0) {
+            const top = this.slotStack.pop()
+            if (top.type === type) {
+                break
+            }
         }
     }
 

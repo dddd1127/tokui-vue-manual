@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { TokUI } from "../../core/tokui";
+import { TokUI } from "../../core/tokui.js";
 
 export function useTokUIStream(){
     const dsl = ref('')
@@ -69,8 +69,8 @@ export function useTokUIStream(){
 
             tokui.endStream()
             isStreaming.value = false
-        } catch (error) {
-            error.value = error.message
+        } catch (err) {
+            error.value = err.message
             isStreaming.value = false
         }
     }

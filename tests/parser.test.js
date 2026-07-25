@@ -82,4 +82,21 @@ console.log('Running parser tests...')
   console.log('✓ Test 6 passed: row/col layout')
 }
 
+// Test 7: 同类型容器嵌套
+{
+  const nodes = parse('[card tt:outer][p outer][card tt:inner][p inner][/card][/card]')
+  assert.strictEqual(nodes.length, 1)
+  assert.strictEqual(nodes[0].type, 'card')
+  assert.strictEqual(nodes[0].attrs.tt, 'outer')
+  assert.strictEqual(nodes[0].children.length, 2)
+  assert.strictEqual(nodes[0].children[0].type, 'p')
+  assert.strictEqual(nodes[0].children[0].content, 'outer')
+  assert.strictEqual(nodes[0].children[1].type, 'card')
+  assert.strictEqual(nodes[0].children[1].attrs.tt, 'inner')
+  assert.strictEqual(nodes[0].children[1].children.length, 1)
+  assert.strictEqual(nodes[0].children[1].children[0].type, 'p')
+  assert.strictEqual(nodes[0].children[1].children[0].content, 'inner')
+  console.log('✓ Test 7 passed: nested same-type containers')
+}
+
 console.log('\nAll parser tests passed!')

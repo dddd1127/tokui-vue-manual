@@ -1,7 +1,7 @@
-import { StreamingParser } from "./parser";
-import { Renderer } from "./renderer";
-import { eventBus, EventBus } from "./event-bus";
-import { registerAll } from "../components-lib";
+import { StreamingParser } from "./parser.js";
+import { Renderer } from "./renderer.js";
+import { eventBus, EventBus } from "./event-bus.js";
+import { registerAll } from "../components-lib/index.js";
 
 
 class TokUI{
